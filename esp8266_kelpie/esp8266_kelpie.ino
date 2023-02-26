@@ -26,21 +26,20 @@
 #include <addons/RTDBHelper.h>
 
 /* 1. Define the WiFi credentials */
-#define WIFI_SSID "NS"
-#define WIFI_PASSWORD "parvana@123"
+#define WIFI_SSID "SSID"
+#define WIFI_PASSWORD "PASSWORD"
 
 // For the following credentials, see examples/Authentications/SignInAsUser/EmailPassword/EmailPassword.ino
 
 /* 2. Define the API Key */
-#define API_KEY "AIzaSyClPJ2S1R97QIhTjcrNNZHHBNkqDSob72k"
+#define API_KEY "APIKEY"
 
 /* 3. Define the RTDB URL */
 #define DATABASE_URL "https://kelpie-a8758-default-rtdb.firebaseio.com/" //<databaseName>.firebaseio.com or <databaseName>.<region>.firebasedatabase.app
 
 /* 4. Define the user Email and password that alreadey registerd or added in your project */
-#define USER_EMAIL "hobbies.bitinc@gmail.com"
-#define USER_PASSWORD "sooraj123"
-
+#define USER_EMAIL "user-email"
+#define USER_PASSWORD "user-password"
 
 // Define Firebase Data object
 FirebaseData fbdo;
@@ -54,11 +53,11 @@ unsigned long sendDataPrevMillis = 0;
 unsigned long count = 0;
 int ON =1;
 int OFF= 0;
-uint8_t LED_Pin = D5; 
+uint8_t Device_Pin = D5; 
 
 void setup()
 {
-  pinMode(LED_Pin, OUTPUT);
+  pinMode(Device_Pin, OUTPUT);
   Serial.begin(115200);
 
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
@@ -135,22 +134,22 @@ void loop()
   {
     sendDataPrevMillis = millis();
 
-   Serial.printf("Get REQUEST STATUS... %s\n", Firebase.RTDB.getInt(&fbdo, F( "hobbiesDOTbitinc@gmailDOTcom/REQ_STATUS")) ? String(fbdo.to<int>()).c_str() : fbdo.errorReason().c_str());
+   Serial.printf("Get REQUEST STATUS... %s\n", Firebase.RTDB.getInt(&fbdo, F( "useremail@gmailDOTcom/REQ_STATUS")) ? String(fbdo.to<int>()).c_str() : fbdo.errorReason().c_str());
    int read_data = fbdo.intData();
    switch (read_data){
     
     case 0:
     
-        Serial.printf("Set LED VALUE... %s\n", Firebase.RTDB.setInt(&fbdo, F("hobbiesDOTbitinc@gmailDOTcom/LED_VALUE"), OFF) ? "ok" : fbdo.errorReason().c_str());
-        Serial.printf("Get LED STATUS... %s\n", Firebase.RTDB.getInt(&fbdo, F("hobbiesDOTbitinc@gmailDOTcom/LED_VALUE")) ? String(fbdo.to<int>()).c_str() : fbdo.errorReason().c_str());   
-        digitalWrite(LED_Pin,LOW);             
+        Serial.printf("Set LED VALUE... %s\n", Firebase.RTDB.setInt(&fbdo, F("useremail@gmailDOTcom/LED_VALUE"), OFF) ? "ok" : fbdo.errorReason().c_str());
+        Serial.printf("Get LED STATUS... %s\n", Firebase.RTDB.getInt(&fbdo, F("useremail@gmailDOTcom/LED_VALUE")) ? String(fbdo.to<int>()).c_str() : fbdo.errorReason().c_str());   
+        digitalWrite(Device_Pin,LOW);             
         break;
         
     case 1:
     
-        Serial.printf("Set LED VALUE... %s\n", Firebase.RTDB.setInt(&fbdo, F("hobbiesDOTbitinc@gmailDOTcom/LED_VALUE"), ON) ? "ok" : fbdo.errorReason().c_str());
-        Serial.printf("Get LED STATUS... %s\n", Firebase.RTDB.getInt(&fbdo, F("hobbiesDOTbitinc@gmailDOTcom/LED_VALUE")) ? String(fbdo.to<int>()).c_str() : fbdo.errorReason().c_str()); 
-        digitalWrite(LED_Pin,HIGH);             
+        Serial.printf("Set LED VALUE... %s\n", Firebase.RTDB.setInt(&fbdo, F("useremail@gmailDOTcom/LED_VALUE"), ON) ? "ok" : fbdo.errorReason().c_str());
+        Serial.printf("Get LED STATUS... %s\n", Firebase.RTDB.getInt(&fbdo, F("useremail@gmailDOTcom/LED_VALUE")) ? String(fbdo.to<int>()).c_str() : fbdo.errorReason().c_str()); 
+        digitalWrite(Device_Pin,HIGH);             
         break;
 
        
