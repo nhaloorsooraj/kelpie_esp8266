@@ -6,12 +6,12 @@ esp8266 backend of kelpie project
 <br/>
 
 ------------------------------------------------------------------------------------------------------
-## NODE MCU BOARD PIOUT 
+## NODE MCU BOARD PIN OUT
 
 <br/>
 <br/>
 
-![NodeMCUv3.0-pinout.jpg](:/9651e1db23ab47a5bf247ccac1f5dcf5)
+![NodeMCUv3.0-pinout.jpg](https://github.com/sooraj-nhaloor/kelpie_esp8266/blob/main/NodeMCUv3.0-pinout.jpg)
 
 ----------------------------------------------------------------------------------------------------
 ## PINS USED 
