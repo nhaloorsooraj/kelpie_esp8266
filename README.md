@@ -250,7 +250,6 @@ void loop() {
             case 1: //motor on
                 digitalWrite(RELAY_A,LOW);
                 Firebase.RTDB.setInt(&fbdo,DEVICE_STATUS,1);
-                delay(3000);
                 
                 break;
             
@@ -266,6 +265,7 @@ void loop() {
     
 void CheckDryRun(){
     if (digitalRead(RELAY_A)== LOW && digitalRead(WATER_SENSOR) == LOW){
+                    delay(3000);
                 digitalWrite(RELAY_A,HIGH);
                 Firebase.RTDB.setInt(&fbdo,REQ_STATUS,0);
                 Firebase.RTDB.setInt(&fbdo,DEVICE_STATUS,2);
