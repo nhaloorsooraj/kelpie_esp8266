@@ -250,7 +250,7 @@ void loop() {
             case 1: //motor on
                 digitalWrite(RELAY_A,LOW);
                 Firebase.RTDB.setInt(&fbdo,DEVICE_STATUS,1);
-                delay(10000);
+                delay(3000);
                 
                 break;
             
